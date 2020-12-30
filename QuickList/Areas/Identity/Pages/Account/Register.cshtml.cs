@@ -75,7 +75,8 @@ namespace QuickList.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            //2* We are going to add a role property that we expect back from the view.That way we can edit our Register.cshtml view to include this new input and option
+            //2* Next, lets modify the InputModel class located inside of the RegisterModel class. We are going to add a new property that we expect back from the view. That way we can edit our Register.cshtml view to include this new input and option.
+           
             [Required]
             public string Role { get; set; }
         }
