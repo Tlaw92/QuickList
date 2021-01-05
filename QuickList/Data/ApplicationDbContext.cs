@@ -26,5 +26,7 @@ namespace QuickList.Data
             }
             );
         }
+        // 12* add a DbSet of that class in your AppDbContext and create the table for each model
+        public DbSet<QuickList.Models.Shopper> Shopper { get; set; }
     }
 }
