@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using QuickList.Models;
 
 namespace QuickList.Data
 {
@@ -28,5 +29,11 @@ namespace QuickList.Data
         }
         // 12* add a DbSet of that class in your AppDbContext and create the table for each model
         public DbSet<QuickList.Models.Shopper> Shopper { get; set; }
+
+        public DbSet<QuickList.Models.GroceryList> GroceryList { get; set; }
+
+        public DbSet<QuickList.Models.GroceryItems> GroceryItems { get; set; }
+
+        public DbSet<QuickList.Models.Product> Product { get; set; }
     }
 }

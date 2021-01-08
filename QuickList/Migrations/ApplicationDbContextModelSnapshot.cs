@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickList.Data;
 
-namespace QuickList.Data.Migrations
+namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -48,8 +48,8 @@ namespace QuickList.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ef051d0e-ec6a-4701-ab02-a005ed014355",
-                            ConcurrencyStamp = "50df9bf2-5c91-48ae-9e3f-d9dc6fcbb54c",
+                            Id = "00c5e720-487e-4458-b974-b37599e28f35",
+                            ConcurrencyStamp = "4e635422-677a-4d85-9c93-bb586f5b0b5d",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -224,6 +224,118 @@ namespace QuickList.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("QuickList.Models.GroceryItems", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("GroceryListId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("RealCost")
+                        .HasColumnType("float");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("GroceryListId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("GroceryItems");
+                });
+
+            modelBuilder.Entity("QuickList.Models.GroceryList", b =>
+                {
+                    b.Property<int>("GroceryListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("EstimatedTotalCost")
+                        .HasColumnType("float");
+
+                    b.Property<double>("RealTotalCost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ShopperId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StoreName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GroceryListId");
+
+                    b.HasIndex("ShopperId");
+
+                    b.ToTable("GroceryList");
+                });
+
+            modelBuilder.Entity("QuickList.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("QuickList.Models.Shopper", b =>
+                {
+                    b.Property<int>("ShopperId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnName("FirstName")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<double>("Lattitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("ShopperId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Shopper");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +385,37 @@ namespace QuickList.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("QuickList.Models.GroceryItems", b =>
+                {
+                    b.HasOne("QuickList.Models.GroceryList", "GroceryList")
+                        .WithMany()
+                        .HasForeignKey("GroceryListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuickList.Models.Product", "product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuickList.Models.GroceryList", b =>
+                {
+                    b.HasOne("QuickList.Models.Shopper", "Shopper")
+                        .WithMany()
+                        .HasForeignKey("ShopperId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("QuickList.Models.Shopper", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 #pragma warning restore 612, 618
         }

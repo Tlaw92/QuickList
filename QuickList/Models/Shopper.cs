@@ -14,17 +14,35 @@ namespace QuickList.Models
         [Key]
         public int ShopperId { get; set; }
 
+        [Required]
+        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [Column("FirstName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
 
         public string Address { get; set; }
 
+        [DataType(DataType.PostalCode)]
+        [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
-        public int Lattitude { get; set; }
+        public double Lattitude { get; set; }
 
-        public int Longitude { get; set; }
+        public double Longitude { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
