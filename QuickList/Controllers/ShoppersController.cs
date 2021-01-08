@@ -157,5 +157,17 @@ namespace QuickList.Controllers
         {
             return _context.Shopper.Any(e => e.ShopperId == id);
         }
+
+        public async Task<IActionResult> Location(Shopper shopper)
+        {
+            if(ModelState.IsValid)
+            {
+                shopper = await _geocodingService.AttachLatAndLong(shopper);
+                _context.Shopper.Add(shopper);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
     }
 }
