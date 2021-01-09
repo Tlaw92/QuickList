@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QuickList.Data;
 using QuickList.Models;
+using QuickList.Services;
 
 namespace QuickList.Controllers
 {
     public class ShoppersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IGeoCodingService _geoCodingService;
 
-        public ShoppersController(ApplicationDbContext context)
+        public ShoppersController(ApplicationDbContext context, IGeoCodingService geoCodingService)
         {
             _context = context;
+            _geoCodingService = geoCodingService;
         }
 
         // GET: Shoppers

@@ -40,12 +40,15 @@ namespace QuickList.Models
         [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
-        public double Lattitude { get; set; }
+        public double Latitude { get; set; }
 
         public double Longitude { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+
+        public string City { get; set; }
+        public string State { get; set; }
     }
 }

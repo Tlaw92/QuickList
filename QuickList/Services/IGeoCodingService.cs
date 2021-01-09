@@ -1,11 +1,13 @@
-﻿using System;
+﻿using QuickList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace QuickList.Services
 {
-    public class IGeoCodingService
+    public interface IGeoCodingService
     {
+        public Task<Shopper> AttachLatAndLong(Shopper shopper);
     }
 }
