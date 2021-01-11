@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,6 +27,12 @@ namespace QuickList.Controllers
         // GET: Shoppers
         public async Task<IActionResult> Index()
         {
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Shopper.Where(c => c.IdentityUserId == userId);
+            if (customer == null)
+            {
+                return RedirectToAction("Create");
+            }
             var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -52,8 +59,9 @@ namespace QuickList.Controllers
         // GET: Shoppers/Create
         public IActionResult Create()
         {
+            Shopper shopper = new Shopper();
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
+            return View(shopper);
         }
 
         // POST: Shoppers/Create
@@ -65,6 +73,7 @@ namespace QuickList.Controllers
         {
             if (ModelState.IsValid)
             {
+                shopper = await _geoCodingService.AttachLatAndLong(shopper);
                 _context.Add(shopper);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -165,8 +174,8 @@ namespace QuickList.Controllers
         {
             if(ModelState.IsValid)
             {
-                shopper = await _geocodingService.AttachLatAndLong(shopper);
-                _context.Shopper.Add(shopper);
+                shopper = await _geoCodingService.AttachLatAndLong(shopper);
+                _context.Shopper.Update(shopper);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
