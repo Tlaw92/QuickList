@@ -21,5 +21,7 @@ namespace QuickList.Models
         public double RealTotalCost { get; set; }
 
         public string StoreName { get; set; }
+
+        public List<GroceryItems> GroceryItemsList { get; set; }
     }
 }

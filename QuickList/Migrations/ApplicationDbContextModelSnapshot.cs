@@ -48,8 +48,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9d93da23-902c-45a3-86e4-86f1c8615f50",
-                            ConcurrencyStamp = "c0564e8b-200e-459b-ad1e-c9ab499883f8",
+                            Id = "f6016737-b505-43bb-9abb-2b777b899e25",
+                            ConcurrencyStamp = "321cd497-c6eb-4c5e-89cb-612bf60bb35c",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -396,7 +396,7 @@ namespace QuickList.Migrations
             modelBuilder.Entity("QuickList.Models.GroceryItems", b =>
                 {
                     b.HasOne("QuickList.Models.GroceryList", "GroceryList")
-                        .WithMany()
+                        .WithMany("GroceryItemsList")
                         .HasForeignKey("GroceryListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

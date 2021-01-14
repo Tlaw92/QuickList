@@ -16,20 +16,21 @@ namespace QuickList.Controllers
     public class ShoppersController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IGeoCodingService _geoCodingService;
+        //private readonly IGeoCodingService _geoCodingService;
 
-        public ShoppersController(ApplicationDbContext context, IGeoCodingService geoCodingService)
+        public ShoppersController(ApplicationDbContext context) 
+            //IGeoCodingService geoCodingService
         {
             _context = context;
-            _geoCodingService = geoCodingService;
+           // _geoCodingService = geoCodingService;
         }
 
         // GET: Shoppers
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var customer = _context.Shopper.Where(c => c.IdentityUserId == userId);
-            if (customer == null)
+            var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId);
+            if (shopper == null)
             {
                 return RedirectToAction("Create");
             }
@@ -59,9 +60,9 @@ namespace QuickList.Controllers
         // GET: Shoppers/Create
         public IActionResult Create()
         {
-            Shopper shopper = new Shopper();
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View(shopper);
+            
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id").ToList();
+            return View();
         }
 
         // POST: Shoppers/Create
@@ -69,17 +70,32 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShopperId,FirstName,LastName,Address,ZipCode,Lattitude,Longitude,IdentityUserId")] Shopper shopper)
+        public async Task<IActionResult> Create([Bind("ShopperId,FirstName,LastName,Address,ZipCode,Lattitude,Longitude,IdentityUserId")] Models.Shopper shopper)
         {
             if (ModelState.IsValid)
             {
-                shopper = await _geoCodingService.AttachLatAndLong(shopper);
+
+                shopper.IdentityUserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(shopper);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", shopper.IdentityUserId);
+            //if (shopper == null)
+            //{
+            //return RedirectToAction("Create");
+            //}
+            //var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
+            //return View(await applicationDbContext.ToListAsync());
+
+            //    shopper = await _geoCodingService.AttachLatAndLong(shopper);
+            //    _context.Add(shopper);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            
+            ViewData["IdentityUserId"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             return View(shopper);
+
         }
 
         // GET: Shoppers/Edit/5
@@ -170,16 +186,16 @@ namespace QuickList.Controllers
             return _context.Shopper.Any(e => e.ShopperId == id);
         }
 
-        public async Task<IActionResult> Location(Shopper shopper)
-        {
-            if(ModelState.IsValid)
-            {
-                shopper = await _geoCodingService.AttachLatAndLong(shopper);
-                _context.Shopper.Update(shopper);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View();
-        }
+        //public async Task<IActionResult> Location(Shopper shopper)
+        //{
+        //    if(ModelState.IsValid)
+        //    {
+        //        shopper = await _geoCodingService.AttachLatAndLong(shopper);
+        //        _context.Shopper.Update(shopper);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View();
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,15 +20,29 @@ namespace QuickList.Controllers
             _context = context;
         }
 
-        // GET: GroceryLists
-        public async Task<IActionResult> Index()
+        //GET: GroceryLists
+        public ActionResult Index()
         {
-            return View(await _context.GroceryList.ToListAsync());
+            var groceryList = _context.GroceryList.Include(m => m.Shopper).ToList();
+
+            return View(groceryList);
         }
+        //public async Task<IActionResult> Index()
+        //{
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId);
+        //    if (shopper == null)
+        //    {
+        //        return RedirectToAction("Create");
+        //    }
+        //    var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
 
         // GET: GroceryLists/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
@@ -149,5 +164,7 @@ namespace QuickList.Controllers
         {
             return _context.GroceryList.Any(e => e.GroceryListId == id);
         }
+
+
     }
 }
