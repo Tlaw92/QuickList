@@ -209,3 +209,4 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.pdb
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.genruntimeconfig.cache
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.csprojAssemblyReference.cache
+C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewPage.cshtml.g.cs

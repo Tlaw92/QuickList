@@ -203,7 +203,10 @@ namespace QuickList.Migrations
                     ShopperId = table.Column<int>(nullable: false),
                     EstimatedTotalCost = table.Column<double>(nullable: false),
                     RealTotalCost = table.Column<double>(nullable: false),
-                    StoreName = table.Column<string>(nullable: true)
+                    StoreName = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -246,7 +249,7 @@ namespace QuickList.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "f6016737-b505-43bb-9abb-2b777b899e25", "321cd497-c6eb-4c5e-89cb-612bf60bb35c", "Shopper", "SHOPPER" });
+                values: new object[] { "23ef09ce-57ca-4a84-b2c2-fe8c57d9e107", "25e81546-6d4f-480e-829d-4aab8c10e2d2", "Shopper", "SHOPPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

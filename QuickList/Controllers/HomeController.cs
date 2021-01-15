@@ -16,6 +16,7 @@ namespace QuickList.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            
         }
 
         public IActionResult Index()
@@ -24,6 +25,11 @@ namespace QuickList.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult NewPage()
         {
             return View();
         }

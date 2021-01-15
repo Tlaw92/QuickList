@@ -93,7 +93,7 @@ namespace QuickList.Controllers
             {
                 return NotFound();
             }
-            return View(groceryList);
+           return View(groceryList);
         }
 
         // POST: GroceryLists/Edit/5

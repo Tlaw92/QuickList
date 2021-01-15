@@ -48,8 +48,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f6016737-b505-43bb-9abb-2b777b899e25",
-                            ConcurrencyStamp = "321cd497-c6eb-4c5e-89cb-612bf60bb35c",
+                            Id = "23ef09ce-57ca-4a84-b2c2-fe8c57d9e107",
+                            ConcurrencyStamp = "25e81546-6d4f-480e-829d-4aab8c10e2d2",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -256,6 +256,12 @@ namespace QuickList.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("EstimatedTotalCost")
                         .HasColumnType("float");
 
@@ -264,6 +270,9 @@ namespace QuickList.Migrations
 
                     b.Property<int>("ShopperId")
                         .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StoreName")
                         .HasColumnType("nvarchar(max)");

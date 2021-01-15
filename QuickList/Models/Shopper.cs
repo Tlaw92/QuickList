@@ -40,6 +40,7 @@ namespace QuickList.Models
         [Display(Name = "Zip Code")]
         public int ZipCode { get; set; }
 
+        //Why Are these here in the Shopper Model?
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
