@@ -80,7 +80,6 @@ namespace QuickList.Controllers
                 shopper.IdentityUserId = userId;
                 _context.Add(groceryList);
                 await _context.SaveChangesAsync();
-                ViewBag["ShopperId"] = shopper.ShopperId; //Passes shopper Id throught the view
                 return RedirectToAction(nameof(Index));
             }
             
