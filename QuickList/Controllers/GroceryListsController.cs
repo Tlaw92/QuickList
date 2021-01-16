@@ -61,6 +61,8 @@ namespace QuickList.Controllers
         // GET: GroceryLists/Create
         public IActionResult Create()
         {
+
+            ViewData["ShopperId"] = new SelectList(_context.Shopper, "ShopperId", "ShopperId");
             return View();
         }
 
@@ -69,16 +71,35 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GroceryListId,ShopperId,EstimatedTotalCost,RealTotalCost,StoreName")] GroceryList groceryList)
+        public async Task<IActionResult> Create([Bind("ShopperId,EstimatedTotalCost,RealTotalCost,StoreName,Date,City,ZipCode")] GroceryList groceryList)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+                shopper.IdentityUserId = userId;
                 _context.Add(groceryList);
                 await _context.SaveChangesAsync();
+                ViewBag["ShopperId"] = shopper.ShopperId; //Passes shopper Id throught the view
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(groceryList);
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("GroceryListId,ShopperId,EstimatedTotalCost,RealTotalCost,StoreName, Date, City, State, ZipCode")] GroceryList groceryList)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //        var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).SingleOrDefault(); 
+        //        _context.GroceryList.Add(groceryList);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(groceryList);
+        //}
 
         // GET: GroceryLists/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -61,7 +61,7 @@ namespace QuickList.Controllers
         public IActionResult Create()
         {
             
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id").ToList();
+             
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShopperId,FirstName,LastName,Address,ZipCode,Lattitude,Longitude,IdentityUserId")] Models.Shopper shopper)
+        public async Task<IActionResult> Create([Bind("ShopperId,FirstName,LastName,Address,ZipCode,Latitude,Longitude,IdentityUserId,City,State")] Models.Shopper shopper)
         {
             if (ModelState.IsValid)
             {
@@ -80,6 +80,9 @@ namespace QuickList.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
+            return View(shopper);
+
             //if (shopper == null)
             //{
             //return RedirectToAction("Create");
@@ -92,9 +95,8 @@ namespace QuickList.Controllers
             //    await _context.SaveChangesAsync();
             //    return RedirectToAction(nameof(Index));
             //}
-            
-            ViewData["IdentityUserId"] = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return View(shopper);
+
+
 
         }
 

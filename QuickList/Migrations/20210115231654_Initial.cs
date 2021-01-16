@@ -177,8 +177,8 @@ namespace QuickList.Migrations
                     LastName = table.Column<string>(maxLength: 50, nullable: false),
                     Address = table.Column<string>(nullable: true),
                     ZipCode = table.Column<int>(nullable: false),
-                    Latitude = table.Column<double>(nullable: false),
-                    Longitude = table.Column<double>(nullable: false),
+                    Latitude = table.Column<double>(nullable: true),
+                    Longitude = table.Column<double>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true)
@@ -206,7 +206,8 @@ namespace QuickList.Migrations
                     StoreName = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true)
+                    State = table.Column<string>(nullable: true),
+                    ZipCode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -249,7 +250,7 @@ namespace QuickList.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "23ef09ce-57ca-4a84-b2c2-fe8c57d9e107", "25e81546-6d4f-480e-829d-4aab8c10e2d2", "Shopper", "SHOPPER" });
+                values: new object[] { "1acd60c6-e486-4ae2-9c16-794723e59da1", "492cb89f-3606-4d7c-a966-3387b94f95a4", "Shopper", "SHOPPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

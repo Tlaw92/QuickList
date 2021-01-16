@@ -41,9 +41,9 @@ namespace QuickList.Models
         public int ZipCode { get; set; }
 
         //Why Are these here in the Shopper Model?
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }

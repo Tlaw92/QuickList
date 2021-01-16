@@ -184,6 +184,7 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryLists\Edit.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryLists\Index.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewPage.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Products\Create.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Products\Delete.cshtml.g.cs
@@ -209,4 +210,3 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.pdb
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.genruntimeconfig.cache
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.csprojAssemblyReference.cache
-C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewPage.cshtml.g.cs

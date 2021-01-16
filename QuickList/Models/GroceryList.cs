@@ -28,6 +28,10 @@ namespace QuickList.Models
 
         public string State { get; set; }
 
+        [DataType(DataType.PostalCode)]
+        [Display(Name = "Zip Code")]
+        public int ZipCode { get; set; }
+
         public List<GroceryItems> GroceryItemsList { get; set; }
 
         //

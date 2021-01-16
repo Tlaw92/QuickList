@@ -10,8 +10,8 @@ using QuickList.Data;
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210115043427_Initial")]
-    partial class Initial
+    [Migration("20210115233239_Initial2")]
+    partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "23ef09ce-57ca-4a84-b2c2-fe8c57d9e107",
-                            ConcurrencyStamp = "25e81546-6d4f-480e-829d-4aab8c10e2d2",
+                            Id = "ae666257-1079-4c06-8f21-f814ecfb3fa9",
+                            ConcurrencyStamp = "036a4cd1-477a-4576-aa29-75d3d3a03744",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -279,6 +279,9 @@ namespace QuickList.Migrations
                     b.Property<string>("StoreName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
                     b.HasKey("GroceryListId");
 
                     b.HasIndex("ShopperId");
@@ -334,10 +337,10 @@ namespace QuickList.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<double>("Latitude")
+                    b.Property<double?>("Latitude")
                         .HasColumnType("float");
 
-                    b.Property<double>("Longitude")
+                    b.Property<double?>("Longitude")
                         .HasColumnType("float");
 
                     b.Property<string>("State")

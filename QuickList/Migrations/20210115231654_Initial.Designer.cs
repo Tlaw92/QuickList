@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickList.Data;
 
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210115231654_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ae666257-1079-4c06-8f21-f814ecfb3fa9",
-                            ConcurrencyStamp = "036a4cd1-477a-4576-aa29-75d3d3a03744",
+                            Id = "1acd60c6-e486-4ae2-9c16-794723e59da1",
+                            ConcurrencyStamp = "492cb89f-3606-4d7c-a966-3387b94f95a4",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
