@@ -16,12 +16,18 @@ namespace QuickList.Models
         public int ShopperId { get; set; }
         public Shopper Shopper { get; set; }
 
-        public double EstimatedTotalCost { get; set; }
+        [Display(Name = "List Name")]
+        public string ListName { get; set; }
+        public double? Budget { get; set; }
 
-        public double RealTotalCost { get; set; }
+        [Display(Name = "Total Cost")]
+        public double? RealTotalCost { get; set; }
 
+        [Display(Name = "Store Name")]
         public string StoreName { get; set; }
 
+
+        [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
         public string City { get; set; }
@@ -33,8 +39,6 @@ namespace QuickList.Models
         public int ZipCode { get; set; }
 
         public List<GroceryItems> GroceryItemsList { get; set; }
-
-        //
 
  
     }

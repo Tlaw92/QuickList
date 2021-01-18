@@ -21,10 +21,11 @@ namespace QuickList.Models
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        //What is this? 
         [Display(Name = "Full Name")]
         public string FullName
         {
@@ -42,7 +43,6 @@ namespace QuickList.Models
 
         //Why Are these here in the Shopper Model?
         public double? Latitude { get; set; }
-
         public double? Longitude { get; set; }
 
         [ForeignKey("IdentityUser")]

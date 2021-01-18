@@ -10,8 +10,8 @@ using QuickList.Data;
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210115233239_Initial2")]
-    partial class Initial2
+    [Migration("20210117215520_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ae666257-1079-4c06-8f21-f814ecfb3fa9",
-                            ConcurrencyStamp = "036a4cd1-477a-4576-aa29-75d3d3a03744",
+                            Id = "f0f21416-1e77-4352-8159-d7be5413a136",
+                            ConcurrencyStamp = "c38fe1ba-931a-47d9-8784-948d22ecea3f",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -258,16 +258,19 @@ namespace QuickList.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double?>("Budget")
+                        .HasColumnType("float");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("EstimatedTotalCost")
-                        .HasColumnType("float");
+                    b.Property<string>("ListName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("RealTotalCost")
+                    b.Property<double?>("RealTotalCost")
                         .HasColumnType("float");
 
                     b.Property<int>("ShopperId")

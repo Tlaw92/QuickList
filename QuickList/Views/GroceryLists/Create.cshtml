@@ -13,24 +13,29 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="ShopperId" class="control-label"></label>
-                <select asp-for="ShopperId" class ="form-control" asp-items="ViewBag.ShopperId"></select>
+                <select asp-for="ShopperId" class="form-control" asp-items="ViewBag.ShopperId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="EstimatedTotalCost" class="control-label"></label>
-                <input asp-for="EstimatedTotalCost" class="form-control" />
-                <span asp-validation-for="EstimatedTotalCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RealTotalCost" class="control-label"></label>
-                <input asp-for="RealTotalCost" class="form-control" />
-                <span asp-validation-for="RealTotalCost" class="text-danger"></span>
+                <label asp-for="ListName" class="control-label"></label>
+                <input asp-for="ListName" class="form-control" />
+                <span asp-validation-for="ListName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StoreName" class="control-label"></label>
                 <input asp-for="StoreName" class="form-control" />
                 <span asp-validation-for="StoreName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Budget" class="control-label"></label>
+                <input asp-for="Budget" class="form-control" />
+                <span asp-validation-for="Budget" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="RealTotalCost" class="control-label"></label>
+                <input asp-for="RealTotalCost" class="form-control" />
+                <span asp-validation-for="RealTotalCost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>

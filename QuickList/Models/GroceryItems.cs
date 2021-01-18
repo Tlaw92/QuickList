@@ -23,6 +23,7 @@ namespace QuickList.Models
         public Product product { get; set; }
 
 
+        [Display(Name = "Real Cost")]
         public double RealCost { get; set; }
     }
 }

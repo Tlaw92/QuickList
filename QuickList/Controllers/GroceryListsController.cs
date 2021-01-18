@@ -71,12 +71,12 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShopperId,EstimatedTotalCost,RealTotalCost,StoreName,Date,City,ZipCode")] GroceryList groceryList)
+        public async Task<IActionResult> Create([Bind("ShopperId,ListName,Budget,RealTotalCost,StoreName,Date,City,State,ZipCode")] GroceryList groceryList)
         {
             if (ModelState.IsValid)
             {
                 var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).FirstOrDefault();
+                var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).SingleOrDefault();
                 shopper.IdentityUserId = userId;
                 _context.Add(groceryList);
                 await _context.SaveChangesAsync();

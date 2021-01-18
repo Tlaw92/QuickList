@@ -16,13 +16,18 @@
             <input type="hidden" asp-for="GroceryListId" />
             <div class="form-group">
                 <label asp-for="ShopperId" class="control-label"></label>
-                <input asp-for="ShopperId" class="form-control" />
+                <select asp-for="ShopperId" class="form-control" asp-items="ViewBag.ShopperId"></select>
                 <span asp-validation-for="ShopperId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EstimatedTotalCost" class="control-label"></label>
-                <input asp-for="EstimatedTotalCost" class="form-control" />
-                <span asp-validation-for="EstimatedTotalCost" class="text-danger"></span>
+                <label asp-for="ListName" class="control-label"></label>
+                <input asp-for="ListName" class="form-control" />
+                <span asp-validation-for="ListName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Budget" class="control-label"></label>
+                <input asp-for="Budget" class="form-control" />
+                <span asp-validation-for="Budget" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RealTotalCost" class="control-label"></label>
@@ -35,6 +40,26 @@
                 <span asp-validation-for="StoreName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -45,6 +70,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

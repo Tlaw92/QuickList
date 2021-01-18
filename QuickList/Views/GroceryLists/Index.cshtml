@@ -8,22 +8,34 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create new Grocery List</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ShopperId)
+                @Html.DisplayNameFor(model => model.Shopper)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EstimatedTotalCost)
+                @Html.DisplayNameFor(model => model.Budget)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RealTotalCost)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StoreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
             </th>
             <th></th>
         </tr>
@@ -32,16 +44,28 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ShopperId)
+                @Html.DisplayFor(modelItem => item.Shopper.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EstimatedTotalCost)
+                @Html.DisplayFor(modelItem => item.Budget)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RealTotalCost)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.GroceryListId">Edit</a> |

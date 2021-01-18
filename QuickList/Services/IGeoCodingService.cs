@@ -8,6 +8,6 @@ namespace QuickList.Services
 {
     public interface IGeoCodingService
     {
-        public Task<Shopper> AttachLatAndLong(Shopper shopper);
+        //public Task<Shopper> AttachLatAndLong(Shopper shopper);
     }
 }
