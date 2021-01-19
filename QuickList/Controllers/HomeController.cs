@@ -31,6 +31,7 @@ namespace QuickList.Controllers
 
         public IActionResult NewPage()
         {
+            //This is a test to make a new random page while getting the hang of MVC
             return View();
         }
 

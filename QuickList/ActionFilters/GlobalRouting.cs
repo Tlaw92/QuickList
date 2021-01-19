@@ -16,6 +16,8 @@ namespace QuickList.ActionFilters
         {
             _claimsPrincipal = claimsPrincipal;
         }
+
+        //THIS METHOD REDIRECTS
         public void OnActionExecuting(ActionExecutingContext context)
         {
             var controller = context.RouteData.Values["controller"];
