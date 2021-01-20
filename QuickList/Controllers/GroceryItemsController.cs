@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +17,12 @@ namespace QuickList.Controllers
         public GroceryItemsController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        // GET: GroceryItems/ItemsSearch
+        public async Task<IActionResult> ItemsSearch()
+        {
+            return View(await _context.GroceryItems.ToListAsync());
         }
 
         // GET: GroceryItems

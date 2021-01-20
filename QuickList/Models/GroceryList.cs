@@ -27,7 +27,7 @@ namespace QuickList.Models
         public string StoreName { get; set; }
 
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public string City { get; set; }

@@ -29,7 +29,7 @@ namespace QuickList.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var shopper = _context.Shopper.Where(c => c.IdentityUserId == userId).FirstOrDefault(); // Use First not Single
             if (shopper == null)
             {
                 return RedirectToAction("Create");
