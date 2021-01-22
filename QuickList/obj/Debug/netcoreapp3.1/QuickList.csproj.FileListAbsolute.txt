@@ -199,7 +199,6 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Shoppers\Delete.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Shoppers\Details.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Shoppers\Edit.cshtml.g.cs
-C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Shoppers\Index.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.RazorTargetAssemblyInfo.cache
@@ -212,3 +211,4 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.csprojAssemblyReference.cache
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryItems\BosieEggs.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryItems\SearchProduct.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\Shoppers\Index.cshtml.g.cs

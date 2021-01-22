@@ -34,8 +34,8 @@ namespace QuickList.Controllers
             {
                 return RedirectToAction("Create");
             }
-            //var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
-            return View(shopper/*await applicationDbContext.ToListAsync()*/);
+            var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
+            return View(await applicationDbContext.ToListAsync());
         }
         
         // GET: Shoppers/Details/5
