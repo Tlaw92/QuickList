@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "SearchProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h1>SearchProduct</h1>*@
+
+<div class="container">
+    <!--Blazor-->
+    <form method="POST" action="/GroceryItems/BosieEggs">
+        <input value="" name="city" placeholder="City Name" />
+        <input value="" name="product" placeholder="Product Name" />
+        <input value="" name="number_days" type="number" placeholder="Number of Days" />
+
+        <input type="submit" value="Search" />
+    </form>
+</div>

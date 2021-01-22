@@ -211,3 +211,4 @@ C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.genruntimeconfig.cache
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\QuickList.csprojAssemblyReference.cache
 C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryItems\BosieEggs.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week13\QuickList\QuickList\obj\Debug\netcoreapp3.1\Razor\Views\GroceryItems\SearchProduct.cshtml.g.cs

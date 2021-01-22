@@ -24,21 +24,26 @@ namespace QuickList.Controllers
         {
             _context = context;
         }
-
         //GET: GroceryItems/ItemsSearch 
         //GET: 
-        [Route("Eggs")]
-        public async Task<IActionResult> BosieEggs()
+
+        public ActionResult SearchProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AllProducts(string product, string city, int number_days)
         {
             WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
             request.Method = "POST";
             request.ContentType = "application/json; charset=UTF-8";
-            request.Headers["api-key"] = APIKeys.GOOGLE_API_KEY;
+            request.Headers["api-key"] = "A5B8EE637FA5E82184A2E094444B3016F0A71FB3D11257807D68B470C1A258A2";
             JObject json = new JObject();
 
-            json.Add("city", "Boise");
-            json.Add("product", "eggs");
-            json.Add("num_days", 7);
+            json.Add("city", city);
+            json.Add("product", product);
+            json.Add("num_days", number_days);
 
             //string jsonString = json.ToString();
             string jsonString = JsonConvert.SerializeObject(json);
@@ -53,12 +58,14 @@ namespace QuickList.Controllers
             StreamReader streamReader = new StreamReader(response.GetResponseStream());
 
             string responseFromServer = streamReader.ReadToEnd();
+            //Is to parse this responseFromServer string into ProductOutPut Model Class
 
+            List<ProductOutput> items = JsonConvert.DeserializeObject<List<ProductOutput>>(responseFromServer);
             streamReader.Close();
             response.Close();
 
             Console.WriteLine(responseFromServer);
-            return View(await _context.GroceryItems.ToListAsync());
+            return View(items);
         }
         //public async Task<IActionResult> BoiseEggs()
         //{
@@ -206,37 +213,37 @@ namespace QuickList.Controllers
         }
 
 
-        private string GetGeoCodingURL(Shopper shopper)
-        {
-            return $"https://maps.googleapis.com/maps/api/geocode/json?components=postal_code%3A+{shopper.ZipCode}%7Ccountry%3USA&key="
-                + APIKeys.GOOGLE_API_KEY;
-        }
+        //private string GetGeoCodingURL(Shopper shopper)
+        //{
+        //    return $"https://maps.googleapis.com/maps/api/geocode/json?components=postal_code%3A+{shopper.ZipCode}%7Ccountry%3USA&key="
+        //        + APIKeys.GOOGLE_API_KEY;
+        //}
 
-        public async Task<Shopper> GetGeoCoding(Shopper shopper)
-        {
-            string apiURL = GetGeoCodingURL(shopper);
+        //public async Task<Shopper> GetGeoCoding(Shopper shopper)
+        //{
+        //    string apiURL = GetGeoCodingURL(shopper);
 
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(apiURL);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applicationException/json"));
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri(apiURL);
+        //        client.DefaultRequestHeaders.Accept.Clear();
+        //        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("applicationException/json"));
 
-                HttpResponseMessage response = await client.GetAsync(apiURL);
+        //        HttpResponseMessage response = await client.GetAsync(apiURL);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string data = await response.Content.ReadAsStringAsync();
-                    JObject jsonResults = JsonConvert.DeserializeObject<JObject>(data);
-                    JToken results = jsonResults["results"][0];
-                    JToken location = results["geometry"]["location"];
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string data = await response.Content.ReadAsStringAsync();
+        //            JObject jsonResults = JsonConvert.DeserializeObject<JObject>(data);
+        //            JToken results = jsonResults["results"][0];
+        //            JToken location = results["geometry"]["location"];
 
-                    shopper.Latitude = (double)location["lat"];
-                    shopper.Longitude = (double)location["lng"];
-                }
-            }
+        //            shopper.Latitude = (double)location["lat"];
+        //            shopper.Longitude = (double)location["lng"];
+        //        }
+        //    }
 
-            return shopper;
-        }
+        //    return shopper;
+        //}
     }
 }
