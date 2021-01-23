@@ -1,0 +1,63 @@
+﻿@model IEnumerable<QuickList.Models.GroceryItems>
+
+@{
+    ViewData["Title"] = "ItemsInList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ItemsInList</h1>
+<div class="container">
+    <!--Blazor-->
+    <form method="POST" action="/GroceryItems/AddToList">
+        <input value="" name="city" placeholder="City Name" />
+        <input value="" name="product" placeholder="Product Name" />
+        <input value="" name="number_days" type="number" placeholder="Number of Days" />
+        <input value="@ViewData["ListId"]" name="ListId" placeholder="id" />
+        <input type="submit" value="Add" />
+    </form>
+</div>
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroceryList)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroceryList.GroceryListId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

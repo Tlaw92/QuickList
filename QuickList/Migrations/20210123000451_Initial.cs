@@ -47,21 +47,6 @@ namespace QuickList.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
-                columns: table => new
-                {
-                    ProductId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Description = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -227,9 +212,12 @@ namespace QuickList.Migrations
                 {
                     ItemId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GroceryListId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
-                    RealCost = table.Column<double>(nullable: false)
+                    City = table.Column<string>(nullable: true),
+                    Date = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    GroceryListId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,18 +228,12 @@ namespace QuickList.Migrations
                         principalTable: "GroceryList",
                         principalColumn: "GroceryListId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GroceryItems_Product_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Product",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1a9a1ebb-646a-4249-8899-2a295c832d02", "633f7a56-db56-4b9c-a876-f4767e02d195", "Shopper", "SHOPPER" });
+                values: new object[] { "69c403e5-b6f8-482b-81df-8c6751fda42b", "c946825b-f9d4-475e-b8dc-3708cf7eba76", "Shopper", "SHOPPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -298,11 +280,6 @@ namespace QuickList.Migrations
                 column: "GroceryListId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroceryItems_ProductId",
-                table: "GroceryItems",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_GroceryList_ShopperId",
                 table: "GroceryList",
                 column: "ShopperId");
@@ -338,9 +315,6 @@ namespace QuickList.Migrations
 
             migrationBuilder.DropTable(
                 name: "GroceryList");
-
-            migrationBuilder.DropTable(
-                name: "Product");
 
             migrationBuilder.DropTable(
                 name: "Shopper");

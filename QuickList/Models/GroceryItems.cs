@@ -9,21 +9,23 @@ namespace QuickList.Models
 {
     public class GroceryItems
     {
+        public string City { get; set; }
+
+        public string Date { get; set; }
+
+        public double Price { get; set; }
+
         [Key]
         public int ItemId { get; set; }
+        public string Title { get; set; }
 
+        public int Quantity { get; set; }
 
         [ForeignKey("GroceryList")]
         public int GroceryListId { get; set; }
         public GroceryList GroceryList { get; set; }
 
 
-        [ForeignKey("Product")]
-        public int ProductId { get; set; }
-        public Product product { get; set; }
 
-
-        [Display(Name = "Real Cost")]
-        public double RealCost { get; set; }
     }
 }

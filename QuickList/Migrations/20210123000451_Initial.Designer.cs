@@ -10,7 +10,7 @@ using QuickList.Data;
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210119040109_Initial")]
+    [Migration("20210123000451_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1a9a1ebb-646a-4249-8899-2a295c832d02",
-                            ConcurrencyStamp = "633f7a56-db56-4b9c-a876-f4767e02d195",
+                            Id = "69c403e5-b6f8-482b-81df-8c6751fda42b",
+                            ConcurrencyStamp = "c946825b-f9d4-475e-b8dc-3708cf7eba76",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -233,20 +233,27 @@ namespace QuickList.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("GroceryListId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<double>("RealCost")
-                        .HasColumnType("float");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemId");
 
                     b.HasIndex("GroceryListId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("GroceryItems");
                 });
@@ -290,27 +297,6 @@ namespace QuickList.Migrations
                     b.HasIndex("ShopperId");
 
                     b.ToTable("GroceryList");
-                });
-
-            modelBuilder.Entity("QuickList.Models.Product", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("QuickList.Models.Shopper", b =>
@@ -415,12 +401,6 @@ namespace QuickList.Migrations
                     b.HasOne("QuickList.Models.GroceryList", "GroceryList")
                         .WithMany("GroceryItemsList")
                         .HasForeignKey("GroceryListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("QuickList.Models.Product", "product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

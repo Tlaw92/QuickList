@@ -34,6 +34,6 @@ namespace QuickList.Data
 
         public DbSet<QuickList.Models.GroceryItems> GroceryItems { get; set; }
 
-        public DbSet<QuickList.Models.Product> Product { get; set; }
+        //public DbSet<QuickList.Models.Product> Product { get; set; }
     }
 }

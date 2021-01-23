@@ -32,93 +32,89 @@ namespace QuickList.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BosieEggs()
+        public async Task<IActionResult> ItemsInList(int? Id)
         {
-            return View();
+            var groceryItems = _context.GroceryItems
+                .Where(m => m.GroceryListId == Id);
+            ViewData["ListId"] = Id;
+            return View(groceryItems);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> BosieEggs(string product, string city, int number_days)
-        {
-            WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
-            request.Method = "POST";
-            request.ContentType = "application/json; charset=UTF-8";
-            request.Headers["api-key"] = "A5B8EE637FA5E82184A2E094444B3016F0A71FB3D11257807D68B470C1A258A2";
-            JObject json = new JObject();
-
-            json.Add("city", city);
-            json.Add("product", product);
-            json.Add("num_days", number_days);
-
-            //string jsonString = json.ToString();
-            string jsonString = JsonConvert.SerializeObject(json);
-
-            StreamWriter streamWriter = new StreamWriter(request.GetRequestStream());
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            streamWriter.Close();
-
-            WebResponse response = request.GetResponse();
-
-            StreamReader streamReader = new StreamReader(response.GetResponseStream());
-
-            string responseFromServer = streamReader.ReadToEnd();
-            //Is to parse this responseFromServer string into ProductOutPut Model Class
-
-            List<ProductOutput> items = JsonConvert.DeserializeObject<List<ProductOutput>>(responseFromServer);
-            streamReader.Close();
-            response.Close();
-
-            Console.WriteLine(responseFromServer);
-            return View(items);
-        }
-
-        public async Task<IActionResult> AddToList(string product, string city, int number_days)
-        {
-            WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
-            request.Method = "POST";
-            request.ContentType = "application/json; charset=UTF-8";
-            request.Headers["api-key"] = "A5B8EE637FA5E82184A2E094444B3016F0A71FB3D11257807D68B470C1A258A2";
-            JObject json = new JObject();
-
-            json.Add("city", city);
-            json.Add("product", product);
-            json.Add("num_days", number_days);
-
-            //string jsonString = json.ToString();
-            string jsonString = JsonConvert.SerializeObject(json);
-
-            StreamWriter streamWriter = new StreamWriter(request.GetRequestStream());
-            streamWriter.Write(json);
-            streamWriter.Flush();
-            streamWriter.Close();
-
-            WebResponse response = request.GetResponse();
-
-            StreamReader streamReader = new StreamReader(response.GetResponseStream());
-
-            string responseFromServer = streamReader.ReadToEnd();
-            //Is to parse this responseFromServer string into ProductOutPut Model Class
-
-            List<ProductOutput> items = JsonConvert.DeserializeObject<List<ProductOutput>>(responseFromServer);
-            streamReader.Close();
-            response.Close();
-
-            Console.WriteLine(responseFromServer);
-            return View(items); //RedirectTo Boise eggs view
-        }
-        //public async task<iactionresult> boiseEggs()
+        //[HttpPost]
+        //public async Task<IActionResult> ItemsInList(string product, string city, int number_days)
         //{
-        //    var client = new restclient("https://grocerybear.com/getitems");
-        //    client.timeout = -1;
-        //    var request = new restrequest(method.post);
-        //    request.addheader("api-key", "a5b8ee637fa5e82184a2e094444b3016f0a71fb3d11257807d68b470c1a258a2");
-        //    request.addheader("content-type", "application/json");
-        //    request.addparameter("application/json", "{\"city\":\"boise\", \"product\":\"eggs\", \"num_days\": 7}", parametertype.requestbody);
-        //    irestresponse response = client.execute(request);
-        //    console.writeline(response.content);
+        //    WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
+        //    request.Method = "POST";
+        //    request.ContentType = "application/json; charset=UTF-8";
+        //    request.Headers["api-key"] = "A5B8EE637FA5E82184A2E094444B3016F0A71FB3D11257807D68B470C1A258A2";
+        //    JObject json = new JObject();
+
+        //    json.Add("city", city);
+        //    json.Add("product", product);
+        //    json.Add("num_days", number_days);
+
+        //    //string jsonString = json.ToString();
+        //    string jsonString = JsonConvert.SerializeObject(json);
+
+        //    StreamWriter streamWriter = new StreamWriter(request.GetRequestStream());
+        //    streamWriter.Write(json);
+        //    streamWriter.Flush();
+        //    streamWriter.Close();
+
+        //    WebResponse response = request.GetResponse();
+
+        //    StreamReader streamReader = new StreamReader(response.GetResponseStream());
+
+        //    string responseFromServer = streamReader.ReadToEnd();
+        //    //Is to parse this responseFromServer string into ProductOutPut Model Class
+
+        //    List<ProductOutput> items = JsonConvert.DeserializeObject<List<ProductOutput>>(responseFromServer);
+        //    streamReader.Close();
+        //    response.Close();
+
+        //    Console.WriteLine(responseFromServer);
+        //    return View(items);
         //}
 
+        //Method below does NOT need a View
+        public async Task<IActionResult> AddToList(string product, string city, int number_days, int ListId)
+        {
+            WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
+            request.Method = "POST";
+            request.ContentType = "application/json; charset=UTF-8";
+            request.Headers["api-key"] = "A5B8EE637FA5E82184A2E094444B3016F0A71FB3D11257807D68B470C1A258A2";
+            JObject json = new JObject();
+
+            json.Add("city", city);
+            json.Add("product", product);
+            json.Add("num_days", number_days);
+
+            //string jsonString = json.ToString();
+            string jsonString = JsonConvert.SerializeObject(json);
+
+            StreamWriter streamWriter = new StreamWriter(request.GetRequestStream());
+            streamWriter.Write(json);
+            streamWriter.Flush();
+            streamWriter.Close();
+
+            WebResponse response = request.GetResponse();
+
+            StreamReader streamReader = new StreamReader(response.GetResponseStream());
+
+            string responseFromServer = streamReader.ReadToEnd();
+            //Is to parse this responseFromServer string into ProductOutPut Model Class
+
+            List<GroceryItems> items = JsonConvert.DeserializeObject<List<GroceryItems>>(responseFromServer);
+            streamReader.Close();
+            response.Close();
+            items[0].GroceryListId = ListId;
+            _context.Add(items[0]);
+            _context.SaveChanges();
+
+            Console.WriteLine(responseFromServer);
+            return RedirectToAction("ItemsInList",new {id = ListId}); //RedirectTo ItemsInList view
+        }
+      
 
 
         // GET: GroceryItems
