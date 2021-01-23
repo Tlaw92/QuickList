@@ -43,7 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
+            <td class="price">
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             @*<td>
@@ -52,14 +52,38 @@
         <td>
             @Html.DisplayFor(modelItem => item.GroceryList.GroceryListId)
         </td>*@
+            
+        <td>
             <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
-            <td>
-
-                @*<a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
+            @*<a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |*@
 
-            </td>
+        </td>
         </tr>
 }
+    <tr>
+        <td>
+            Total Cost
+        </td>
+
+        <td id="totalCost">
+            Total Cost:
+        </td>
+
+        <td>
+
+        </td>
+    </tr>
     </tbody>
 </table>
+@*Total Cost of list below*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        let totalPrice = 0;
+        $('.price').each(function () {
+            totalPrice=totalPrice+parseFloat($(this).html());
+        })
+        $("#totalCost").html(totalPrice.toFixed(2));
+    });
+</script>

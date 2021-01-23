@@ -89,6 +89,7 @@ namespace QuickList.Controllers
             json.Add("product", product);
             json.Add("num_days", number_days);
 
+
             //string jsonString = json.ToString();
             string jsonString = JsonConvert.SerializeObject(json);
 
@@ -103,14 +104,13 @@ namespace QuickList.Controllers
 
             string responseFromServer = streamReader.ReadToEnd();
             //Is to parse this responseFromServer string into ProductOutPut Model Class
-
             List<GroceryItems> items = JsonConvert.DeserializeObject<List<GroceryItems>>(responseFromServer);
+
             streamReader.Close();
             response.Close();
             items[0].GroceryListId = ListId;
             _context.Add(items[0]);
             _context.SaveChanges();
-
             Console.WriteLine(responseFromServer);
             return RedirectToAction("ItemsInList",new {id = ListId}); //RedirectTo ItemsInList view
         }
@@ -228,8 +228,9 @@ namespace QuickList.Controllers
             {
                 return NotFound();
             }
-
+            TempData["ListId"] = groceryItems.GroceryListId.ToString();
             return View(groceryItems);
+
         }
 
         // POST: GroceryItems/Delete/5
@@ -240,7 +241,10 @@ namespace QuickList.Controllers
             var groceryItems = await _context.GroceryItems.FindAsync(id);
             _context.GroceryItems.Remove(groceryItems);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            //return RedirectToAction("ItemsInList");
+            //return RedirectToAction(nameof(Index));
+            int ListId = Convert.ToInt32(TempData["ListId"].ToString());
+            return RedirectToAction("ItemsInList", new { id = ListId });
         }
 
         private bool GroceryItemsExists(int id)
