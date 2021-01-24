@@ -48,8 +48,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3bc50e2e-2884-4f9e-83f0-8d7c5626725d",
-                            ConcurrencyStamp = "4d6aa588-fdd4-40ec-b7f0-9789bca31c77",
+                            Id = "833f502c-fe49-408a-9404-e5b083af5ae4",
+                            ConcurrencyStamp = "1d31ac36-1ba9-4362-b86a-37d2632a403a",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });

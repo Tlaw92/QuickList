@@ -162,7 +162,6 @@ namespace QuickList.Controllers
             }
             return View(groceryItems);
         }
-
         // GET: GroceryItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -172,7 +171,6 @@ namespace QuickList.Controllers
             {
                 return NotFound();
             }
-
             var groceryItems = await _context.GroceryItems.FindAsync(id);
             if (groceryItems == null)
             {
@@ -182,14 +180,13 @@ namespace QuickList.Controllers
             //return RedirectToAction("ItemsInList", new { id = ListId });
             //Above needs to do exactly what add to list does.
         }
-
         // POST: GroceryItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("City,Date,Price,ItemId,Title,Quantity,GroceryListId")] GroceryItems groceryItems)  /*Or Try Passing in ListIdItemId,ProductId,RealCost*/
         {
+            TempData["ListId"] = groceryItems.GroceryListId;
             if (id != groceryItems.ItemId)
             {
                 return NotFound();
@@ -199,7 +196,8 @@ namespace QuickList.Controllers
             {
                 try
                 {
-                    _context.Update(groceryItems);
+                    _context.GroceryItems.Update(groceryItems);
+                    //_context.Update(groceryItems.ItemId);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -213,10 +211,13 @@ namespace QuickList.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
-                // // // // // // // // // // Figuring out how to direct back to Items view
+                //return RedirectToAction(nameof(ItemsInList));
+                int listId = Convert.ToInt32(TempData["ListId"].ToString());
+                return RedirectToAction("ItemsInList", new { id = listId });
+                // // // // // // // // // // Figuring out how to pass in the correct Id
             }
-            return View(groceryItems);
+            int listId2 = Convert.ToInt32(TempData["ListId"].ToString());
+            return RedirectToAction("ItemsInList", new { id = listId2 });
         }
 
         // GET: GroceryItems/Delete/5

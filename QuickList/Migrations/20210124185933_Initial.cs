@@ -233,7 +233,7 @@ namespace QuickList.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "30091614-31e9-4803-8538-ca7778d45285", "a9e282f3-944a-4e34-a626-fef5668baaa7", "Shopper", "SHOPPER" });
+                values: new object[] { "833f502c-fe49-408a-9404-e5b083af5ae4", "1d31ac36-1ba9-4362-b86a-37d2632a403a", "Shopper", "SHOPPER" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
