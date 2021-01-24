@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.StoreName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ParkingSpot)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
@@ -56,6 +59,9 @@
                 @Html.DisplayFor(modelItem => item.StoreName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ParkingSpot)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
@@ -70,7 +76,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.GroceryListId">Edit</a> |
                 <a hidden asp-action="Details" asp-route-id="@item.GroceryListId">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.GroceryListId">Delete</a> | 
+                <a asp-action="Delete" asp-route-id="@item.GroceryListId">Delete</a> |
                 <a asp-controller="GroceryItems" asp-action="ItemsInList" asp-route-id="@item.GroceryListId">Add To List</a>
             </td>
         </tr>

@@ -71,7 +71,7 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ShopperId,ListName,Budget,RealTotalCost,StoreName,Date,City,State,ZipCode")] GroceryList groceryList)
+        public async Task<IActionResult> Create([Bind("ShopperId,ListName,Budget,RealTotalCost,StoreName,ParkingSpot,Date,City,State,ZipCode")] GroceryList groceryList)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +123,7 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GroceryListId,ShopperId,ListName,Budget,RealTotalCost,StoreName,Date,City,State,ZipCode")] GroceryList groceryList)
+        public async Task<IActionResult> Edit(int id, [Bind("GroceryListId,ShopperId,ListName,Budget,RealTotalCost,StoreName,ParkingSpot,Date,City,State,ZipCode")] GroceryList groceryList)
         {
             if (id != groceryList.GroceryListId)
             {

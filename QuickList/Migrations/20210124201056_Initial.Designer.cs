@@ -10,7 +10,7 @@ using QuickList.Data;
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210124185933_Initial")]
+    [Migration("20210124201056_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "833f502c-fe49-408a-9404-e5b083af5ae4",
-                            ConcurrencyStamp = "1d31ac36-1ba9-4362-b86a-37d2632a403a",
+                            Id = "198ea203-0c5f-42e6-9cdd-0fb78ae6b8a2",
+                            ConcurrencyStamp = "6893a8a2-99df-488b-aa5e-5d828660fbd4",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
@@ -275,6 +275,9 @@ namespace QuickList.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ListName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParkingSpot")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("RealTotalCost")

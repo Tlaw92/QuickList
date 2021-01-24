@@ -26,6 +26,8 @@ namespace QuickList.Models
         [Display(Name = "Store Name")]
         public string StoreName { get; set; }
 
+        [Display(Name = "Parking Spot")]
+        public string ParkingSpot { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
