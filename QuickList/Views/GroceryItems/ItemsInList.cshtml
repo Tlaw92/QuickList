@@ -7,11 +7,11 @@
 
 <h1>ItemsInList</h1>
 <div class="container">
-    <!--Blazor-->
+
     <form method="POST" action="/GroceryItems/AddToList">
-        <input value="" name="city" placeholder="City Name" />
+        <input hidden value="@ViewData["CityName"]" name="city" placeholder="City Name" />
         <input value="" name="product" placeholder="Product Name" />
-        <input value="" name="number_days" type="number" placeholder="Number of Days" />
+        @*<input value="" name="number_days" type="number" placeholder="Number of Days" />*@
         <input hidden value="@ViewData["ListId"]" name="ListId" placeholder="id" />
         <input type="submit" value="Add" />
     </form>

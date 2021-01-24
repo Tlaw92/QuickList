@@ -41,7 +41,7 @@
             @*What is that below?*@
             <input type="hidden" asp-for="ItemId"/>
             @*What is that above?*@
-            <div class="form-group">
+            <div hidden class="form-group">
                 <label asp-for="GroceryListId" class="control-label"></label>
                 <select asp-for="GroceryListId" class="form-control" asp-items="ViewBag.GroceryListId"></select>
                 <span asp-validation-for="GroceryListId" class="text-danger"></span>
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 

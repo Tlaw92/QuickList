@@ -34,6 +34,8 @@ namespace QuickList.Controllers
 
         public async Task<IActionResult> ItemsInList(int? Id)
         {
+            var groceryList = await _context.GroceryList.FindAsync(Id);
+            ViewData["CityName"] = groceryList.City;
             var groceryItems = _context.GroceryItems
                 .Where(m => m.GroceryListId == Id);
             ViewData["ListId"] = Id;
@@ -77,7 +79,7 @@ namespace QuickList.Controllers
         //}
 
         //Method below does NOT need a View
-        public async Task<IActionResult> AddToList(string product, string city, int number_days, int ListId)
+        public async Task<IActionResult> AddToList(string product, string city,/* int number_days,*/ int ListId)
         {
             WebRequest request = WebRequest.Create("https://grocerybear.com/getitems");
             request.Method = "POST";
@@ -87,7 +89,7 @@ namespace QuickList.Controllers
 
             json.Add("city", city);
             json.Add("product", product);
-            json.Add("num_days", number_days);
+            json.Add("num_days", 1);
 
 
             //string jsonString = json.ToString();
