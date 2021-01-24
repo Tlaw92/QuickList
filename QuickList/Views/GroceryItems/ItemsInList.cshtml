@@ -12,7 +12,7 @@
         <input value="" name="city" placeholder="City Name" />
         <input value="" name="product" placeholder="Product Name" />
         <input value="" name="number_days" type="number" placeholder="Number of Days" />
-        <input value="@ViewData["ListId"]" name="ListId" placeholder="id" />
+        <input hidden value="@ViewData["ListId"]" name="ListId" placeholder="id" />
         <input type="submit" value="Add" />
     </form>
 </div>
@@ -54,9 +54,9 @@
         </td>*@
             
         <td>
-            <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a>
-            @*<a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |*@
+            <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a> |
+            <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> 
+            @*<a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |*@
 
         </td>
         </tr>

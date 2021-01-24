@@ -11,7 +11,7 @@ namespace QuickList.Services
     //public class GeoCodingService : IGeoCodingService
     //{
     //    public async Task<Shopper> AttachLatAndLong(Shopper shopper)
-    //    {
+    //    {                  https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=32.715738, -117.161084&radius=2000&keyword=Grocery store&key=GOOGLE_API_KEY;
     //        string url = $"https://maps.googleapis.com/maps/api/geocode/json?address={shopper.Address}+{shopper.City}+{shopper.State}+&key={APIKeys.GOOGLE_API_KEY}";
     //        HttpClient client = new HttpClient();
     //        HttpResponseMessage response = await client.GetAsync(url);

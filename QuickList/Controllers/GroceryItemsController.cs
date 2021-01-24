@@ -166,6 +166,8 @@ namespace QuickList.Controllers
         // GET: GroceryItems/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["GroceryListId"] = new SelectList(_context.GroceryList, "GroceryListId", "GroceryListId");
+
             if (id == null)
             {
                 return NotFound();
@@ -177,6 +179,8 @@ namespace QuickList.Controllers
                 return NotFound();
             }
             return View(groceryItems);
+            //return RedirectToAction("ItemsInList", new { id = ListId });
+            //Above needs to do exactly what add to list does.
         }
 
         // POST: GroceryItems/Edit/5
@@ -184,7 +188,7 @@ namespace QuickList.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ItemId,ProductId,RealCost")] GroceryItems groceryItems)
+        public async Task<IActionResult> Edit(int id, [Bind("City,Date,Price,ItemId,Title,Quantity,GroceryListId")] GroceryItems groceryItems)  /*Or Try Passing in ListIdItemId,ProductId,RealCost*/
         {
             if (id != groceryItems.ItemId)
             {
@@ -210,6 +214,7 @@ namespace QuickList.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
+                // // // // // // // // // // Figuring out how to direct back to Items view
             }
             return View(groceryItems);
         }

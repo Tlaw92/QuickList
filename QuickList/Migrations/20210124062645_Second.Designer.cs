@@ -10,8 +10,8 @@ using QuickList.Data;
 namespace QuickList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210123000451_Initial")]
-    partial class Initial
+    [Migration("20210124062645_Second")]
+    partial class Second
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,8 @@ namespace QuickList.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "69c403e5-b6f8-482b-81df-8c6751fda42b",
-                            ConcurrencyStamp = "c946825b-f9d4-475e-b8dc-3708cf7eba76",
+                            Id = "3bc50e2e-2884-4f9e-83f0-8d7c5626725d",
+                            ConcurrencyStamp = "4d6aa588-fdd4-40ec-b7f0-9789bca31c77",
                             Name = "Shopper",
                             NormalizedName = "SHOPPER"
                         });
