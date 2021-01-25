@@ -22,6 +22,20 @@ namespace QuickList.Services
             return shopper;
         }
 
+        public async Task<Location> GetLocation(string Address)
+        {
+            Location location = new Location();
+            string shopperAddress = "https://maps.googleapis.com/maps/api/geocode/json?address="+Address+"&key="+APIKeys.GOOGLE_API_KEY+"";
+
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(shopperAddress);
+            string jsonResult = await response.Content.ReadAsStringAsync();
+            JObject jObject = JObject.Parse(jsonResult);
+            
+
+            return location;
+        }
+
 
     }
 }

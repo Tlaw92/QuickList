@@ -192,7 +192,11 @@ namespace QuickList.Controllers
         public async Task<IActionResult> Location(Shopper shopper)
         {
             GeoCodingService geo1 = new GeoCodingService();
-            string shopperAddress = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=GOOGLE_API_KEY";
+            int id = 0;
+            _context.Shopper.FindAsync(id);
+            string address = shopper.ZipCode + shopper.City + shopper.Address + shopper.State;
+            Location location =  await geo1.GetLocation(address);
+            //string shopperAddress = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=GOOGLE_API_KEY";
             shopper = await geo1.AttachLatAndLong(shopper);
             //if (ModelState.IsValid)
             //{               
