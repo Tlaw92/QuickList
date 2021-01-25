@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ItemsInList</h1>
+<h1>List Items</h1>
 <div class="container">
 
     <form method="POST" action="/GroceryItems/AddToList">
@@ -54,8 +54,9 @@
         </td>*@
             
         <td>
-            <a asp-action="Delete" asp-route-id="@item.ItemId">Delete</a> |
-            <a asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> 
+            
+            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ItemId">Delete</a> |
+            <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.ItemId">Edit</a> 
             @*<a asp-action="Details" asp-route-id="@item.ItemId">Details</a> |*@
 
         </td>
