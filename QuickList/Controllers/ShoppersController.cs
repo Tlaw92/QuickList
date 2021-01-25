@@ -11,6 +11,7 @@ using QuickList.Data;
 using QuickList.Models;
 using QuickList.Services;
 
+
 namespace QuickList.Controllers
 {
     public class ShoppersController : Controller
@@ -18,11 +19,11 @@ namespace QuickList.Controllers
         private readonly ApplicationDbContext _context;
         //private readonly IGeoCodingService _geoCodingService;
 
-        public ShoppersController(ApplicationDbContext context) 
-            //IGeoCodingService geoCodingService
+        public ShoppersController(ApplicationDbContext context)
+        //IGeoCodingService geoCodingService;
         {
             _context = context;
-           // _geoCodingService = geoCodingService;
+            //_geoCodingService = geoCodingService;
         }
 
         // GET: Shoppers
@@ -37,7 +38,7 @@ namespace QuickList.Controllers
             var applicationDbContext = _context.Shopper.Include(s => s.IdentityUser);
             return View(await applicationDbContext.ToListAsync());
         }
-        
+
         // GET: Shoppers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,7 +61,7 @@ namespace QuickList.Controllers
         // GET: Shoppers/Create
         public IActionResult Create()
         {
-            
+
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id").ToList();
             return View();
         }
@@ -80,7 +81,7 @@ namespace QuickList.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(shopper);
 
             //if (shopper == null)
@@ -188,18 +189,21 @@ namespace QuickList.Controllers
             return _context.Shopper.Any(e => e.ShopperId == id);
         }
 
-        //public async Task<IActionResult> Location(Shopper shopper)
-        //{
-        //    if(ModelState.IsValid)
-        //    {
-        //        shopper = await _geoCodingService.AttachLatAndLong(shopper);
-        //        _context.Shopper.Update(shopper);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View();
+        public async Task<IActionResult> Location(Shopper shopper)
+        {
+            GeoCodingService geo1 = new GeoCodingService();
+            string shopperAddress = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=GOOGLE_API_KEY";
+            shopper = await geo1.AttachLatAndLong(shopper);
+            //if (ModelState.IsValid)
+            //{               
+            //    _context.Shopper.Update(shopper);
+            //    await _context.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            //}
+            return View();
 
-       
-        
+
+
+        }
     }
 }

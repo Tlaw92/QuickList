@@ -1,0 +1,24 @@
+﻿@model QuickList.Models.Shopper
+
+@{
+    ViewData["Title"] = "Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Location</h1>
+
+<form>
+    <input asp-for="@Model.FirstName" placeholder="First Name" />
+
+    <input asp-for="@Model.LastName" placeholder="Last Name" />
+
+    <input asp-for="@Model.City" placeholder="City" />
+    <input asp-for="@Model.Address" placeholder="Address" />
+    <input asp-for="@Model.Latitude" placeholder="Latitude" />
+    <input asp-for="@Model.Longitude" placeholder="Longitude" />
+    <input asp-for="@Model.ZipCode" placeholder="Zip Code" />
+    <input asp-for="@Model.State" placeholder="State" />
+
+    <input type="submit" value="Submit" />
+
+</form>
